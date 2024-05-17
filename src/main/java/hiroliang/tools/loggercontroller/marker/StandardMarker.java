@@ -1,6 +1,7 @@
 package hiroliang.tools.loggercontroller.marker;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Marker;
 
 import java.time.LocalDateTime;
@@ -13,9 +14,11 @@ public class StandardMarker implements Marker {
     private final String name;
     private final List<Marker> referenceList = new CopyOnWriteArrayList<>();
     @Getter
-    private final LocalDateTime timestamp;
+    @Setter
+    private LocalDateTime timestamp;
     @Getter
-    private final Integer expirationDays;
+    @Setter
+    private Integer expirationDays;
 
 
     public StandardMarker(String name, LocalDateTime timestamp, Integer expirationDays) {
