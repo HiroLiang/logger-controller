@@ -1,0 +1,8 @@
+<aspectj>
+    <aspects>
+        <aspect name="hiroliang.tools.loggercontroller.aop.LoggingAspect"/>
+    </aspects>
+    <weaver>
+        <include within="org.slf4j.Logger..*"/>
+    </weaver>
+</aspectj>
