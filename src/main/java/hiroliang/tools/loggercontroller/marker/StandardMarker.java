@@ -109,6 +109,8 @@ public class StandardMarker implements Marker {
 
     public boolean isOverdue() {
         if (this.expirationDays == -1)
+            return false;
+        if(this.expirationDays == 0)
             return true;
 
         LocalDateTime now = LocalDateTime.now();
