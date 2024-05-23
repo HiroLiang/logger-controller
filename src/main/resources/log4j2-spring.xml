@@ -6,7 +6,7 @@
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout charset="UTF-8" pattern="%d [%t] %-5p [%c{1}.%M:%L] - %m%n"/>
             <Filters>
-                <DefaultFilter markerName="Default" onMatch="ACCEPT" onMismatch="DENY"/>
+                <DefaultFilter markerName="Customs" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </Console>
     </appenders>

@@ -26,11 +26,21 @@ public class DemoController {
                 
                 -------------------------------------------------------------------------------
                 """);
+
         log.info("Test marker log ... ");
         log.info(MarkerHandler.getMarker("Default").toString());
         log.info(MarkerHandler.getMarker("Default"), "Default marker");
-        log.info(MarkerHandler.getMarker("Standard").toString());
-        log.info(MarkerHandler.getMarker("Standard"), "Standard marker");
+        log.info(MarkerHandler.getMarker("Customs").toString());
+        log.info(MarkerHandler.getMarker("Customs"), "Standard marker");
+        /*
+         * 輸出 :
+         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:29] - Test marker log ...
+         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:30] - Default
+         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:32] - Customs [ Child ]
+         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:33] - Standard marker
+         *
+         * 當然...因為 Default 不在 Customs 底下
+         */
         System.out.println("""
                 
                 -------------------------------------------------------------------------------
