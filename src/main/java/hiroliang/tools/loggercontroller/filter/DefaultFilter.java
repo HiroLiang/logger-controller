@@ -52,4 +52,5 @@ public class DefaultFilter extends AbstractFilter {
         System.out.println("DefaultFilter createFilter ...");
         return new DefaultFilter(markerName, onMatch, onMismatch);
     }
+
 }

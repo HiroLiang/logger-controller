@@ -8,7 +8,9 @@ import org.slf4j.Marker;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -31,13 +33,17 @@ public class DemoController {
         log.info(MarkerHandler.getMarker("Default").toString());
         log.info(MarkerHandler.getMarker("Default"), "Default marker");
         log.info(MarkerHandler.getMarker("Customs").toString());
-        log.info(MarkerHandler.getMarker("Customs"), "Standard marker");
+        log.info(MarkerHandler.getMarker("Customs"), "Customs marker");
+        log.info(MarkerHandler.getMarker("Child").toString());
+        log.info(MarkerHandler.getMarker("Child"), "Child marker");
         /*
          * 輸出 :
          * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:29] - Test marker log ...
          * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:30] - Default
          * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:32] - Customs [ Child ]
-         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:33] - Standard marker
+         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:33] - Customs marker
+         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:32] - Child
+         * YYYY-MM-DD HH:mm:ss,sss [http-nio-8080-exec-1] INFO  [DemoController.testLog:33] - Child marker
          *
          * 當然...因為 Default 不在 Customs 底下
          */

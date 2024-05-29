@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Component
 public class MarkerHandler {
 
-    private static final Map<String, Marker> markers = new HashMap<>();
+    private static final Map<String, Marker> markers = new ConcurrentHashMap<>();
 
     private final DefaultMarkersProvider provider;
 
@@ -25,17 +26,21 @@ public class MarkerHandler {
 
     @PostConstruct
     public void init() {
-        MarkerHandler.cleanMarkers();
-        setAllMarkers(provider.getDefaultMarkers().getMarkers().iterator());
-        log.info("Initialized Marker Handler...");
-        log.info("Default markers: {}", markers);
+        synchronized (MarkerHandler.class) {
+            MarkerHandler.cleanMarkers();
+            setAllMarkers(provider.getDefaultMarkers().getMarkers().iterator());
+            log.info("Marker Handler Initialized...");
+            log.info("Default markers: {}", markers);
+        }
     }
 
     public static void init(List<StandardMarker> markerList) {
-        MarkerHandler.cleanMarkers();
-        setAllMarkers(markerList.stream().map(marker -> (Marker) marker).toList().iterator());
-        log.info("Update Marker Handler...");
-        log.info("Use new markers: {}", markers);
+        synchronized (MarkerHandler.class) {
+            MarkerHandler.cleanMarkers();
+            setAllMarkers(markerList.stream().map(marker -> (Marker) marker).toList().iterator());
+            log.info("Update Marker Handler...");
+            log.info("Use new markers: {}", markers);
+        }
     }
 
     public static Marker getMarker(String name) {
